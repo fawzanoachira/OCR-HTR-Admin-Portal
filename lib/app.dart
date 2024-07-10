@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ocr_admin/config/colors.dart';
+import 'package:ocr_admin/config/colors/colors.dart';
+import 'package:ocr_admin/config/measures/border_radius.dart';
+import 'package:ocr_admin/config/measures/padding.dart';
 import 'package:ocr_admin/screens/home/home.dart';
 
 class MyApp extends StatelessWidget {
@@ -23,20 +25,17 @@ class MyApp extends StatelessWidget {
               iconSize: WidgetStatePropertyAll(40),
             ),
           ),
-          listTileTheme: const ListTileThemeData(
-              tileColor: Color.fromARGB(255, 87, 6, 124),
-              selectedColor: Color.fromARGB(255, 143, 22, 199),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)))),
+          listTileTheme: ListTileThemeData(
+              tileColor: listTileColor,
+              selectedColor: listTileSelectColor,
+              shape: RoundedRectangleBorder(borderRadius: bRA8)),
           dialogTheme: DialogTheme(backgroundColor: appBarBGColor),
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ButtonStyle(
-                  backgroundColor: const WidgetStatePropertyAll(
-                      Color.fromARGB(255, 87, 6, 124)),
-                  padding: const WidgetStatePropertyAll(
-                      EdgeInsets.symmetric(horizontal: 16, vertical: 20)),
-                  shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)))),
+                  backgroundColor: WidgetStatePropertyAll(elevatedButtonColor),
+                  padding: WidgetStatePropertyAll(pX16Y20),
+                  shape: WidgetStatePropertyAll(
+                      RoundedRectangleBorder(borderRadius: bRA8)),
                   overlayColor: WidgetStatePropertyAll(overlayColor)))),
       home: const HomeScreen(),
     );

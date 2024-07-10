@@ -19,7 +19,11 @@ class _RoomUsersState extends State<RoomUsers> {
     if (widget.room != null) {
       roomUsers = await getRoomUsersAPI(widget.room!.id!);
     }
-    setState(() {});
+    setState(() {
+      roomUsers.sort(
+        (a, b) => b!.score!.compareTo(a!.score as num),
+      );
+    });
   }
 
   @override

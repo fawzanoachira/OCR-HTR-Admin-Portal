@@ -51,3 +51,17 @@ Future<List<Annotations?>> getRoomUserAnnotationAPI(
     return [];
   }
 }
+
+Future<Annotations?> verifyRoomUserAnnotationAPI(
+    Annotations ocrAnnotation) async {
+  try {
+    log(ocrAnnotation.toJson().toString());
+    final response = await dio.post("/verify_room_user_annotation",
+        data: ocrAnnotation.toJson());
+    log(response.data.toString());
+    return Annotations.fromJson(response.data);
+  } catch (e) {
+    log(e.toString());
+  }
+  return null;
+}

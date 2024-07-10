@@ -6,6 +6,7 @@ class Annotations {
   bool? isAnnotable;
   int? id;
   bool? isVerified;
+  int? roomID;
 
   Annotations(
       {this.filename,
@@ -14,7 +15,8 @@ class Annotations {
       this.annotator,
       this.isAnnotable,
       this.id,
-      this.isVerified});
+      this.isVerified,
+      this.roomID});
 
   Annotations.fromJson(Map<String, dynamic> json) {
     filename = json['filename'];
@@ -24,6 +26,7 @@ class Annotations {
     isAnnotable = json['is_annotable'];
     id = json['id'];
     isVerified = json['is_verified'];
+    roomID = json['room_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +38,7 @@ class Annotations {
     data['is_annotable'] = isAnnotable;
     data['id'] = id;
     data['is_verified'] = isVerified;
+    data['room_id'] = roomID;
     return data;
   }
 
