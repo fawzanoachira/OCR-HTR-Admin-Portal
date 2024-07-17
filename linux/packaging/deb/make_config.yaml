@@ -1,0 +1,34 @@
+display_name: OCR_Administrator
+package_name: ocr-admin
+
+maintainer:
+  name: Muhammed Fawzan A
+  email: fawzanaramam@gmail.com
+
+priority: optional
+
+section: x11
+
+installed_size: 15700
+
+dependencies:
+  - mpv
+
+essential: false
+
+# icon: linux/assets/apidash.png
+
+postuninstall_scripts:
+  - echo "Sorry to see you go."
+
+keywords:
+  - ocr_admin
+  - OCR_ADMIN
+
+generic_name: OCR_Administrator
+
+categories:
+  - Development
+  - Utility
+
+startup_notify: true

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ocr_admin/api/admin.dart';
 import 'package:ocr_admin/api/api.dart';
+import 'package:ocr_admin/config/colors/colors.dart';
 import 'package:ocr_admin/models/annotations.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/models/user.dart';
@@ -59,9 +60,10 @@ class _UserAnnotationState extends State<UserAnnotation> {
               ...annotations.map((i) => Container(
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(16),
-                    decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 128, 14, 180),
-                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                    decoration: BoxDecoration(
+                        color: circleAvatarBGColor,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8))),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,

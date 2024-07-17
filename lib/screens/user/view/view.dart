@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ocr_admin/api/admin.dart';
+import 'package:ocr_admin/config/colors/colors.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/models/user.dart';
 import 'package:ocr_admin/screens/user_annotation/view/view.dart';
@@ -52,7 +53,7 @@ class _RoomUsersState extends State<RoomUsers> {
                   child: ListTile(
                     onTap: () => navigateToAnnotation(i),
                     leading: CircleAvatar(
-                      backgroundColor: const Color.fromARGB(255, 143, 22, 199),
+                      backgroundColor: circleAvatarBGColor,
                       child: Text(i?.id.toString() ?? ""),
                     ),
                     title: Text(i!.userName ?? ""),

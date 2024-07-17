@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:ocr_admin/api/admin.dart';
+import 'package:ocr_admin/config/colors/colors.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/screens/user/view/view.dart';
 
@@ -141,8 +142,7 @@ class _RoomsState extends State<Rooms> {
                     child: ListTile(
                       onTap: () => navigateToRoomUser(i),
                       leading: CircleAvatar(
-                        backgroundColor:
-                            const Color.fromARGB(255, 143, 22, 199),
+                        backgroundColor: circleAvatarBGColor,
                         child: Text(i.id.toString()),
                       ),
                       title: Text(i.name ?? ""),
