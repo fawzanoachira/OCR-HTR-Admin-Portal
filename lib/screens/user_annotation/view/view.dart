@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ocr_admin/api/admin.dart';
 import 'package:ocr_admin/api/api.dart';
 import 'package:ocr_admin/config/colors/colors.dart';
+import 'package:ocr_admin/config/measures/border_radius.dart';
 import 'package:ocr_admin/models/annotations.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/models/user.dart';
@@ -50,7 +51,14 @@ class _UserAnnotationState extends State<UserAnnotation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Annotations")),
+      appBar: AppBar(
+        title: const Text("Annotations"),
+        actions: [
+          IconButton(
+              onPressed: () => getRoomUserAnnotation(),
+              icon: const Icon(Icons.refresh_rounded))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -61,9 +69,7 @@ class _UserAnnotationState extends State<UserAnnotation> {
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                        color: circleAvatarBGColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8))),
+                        color: circleAvatarBGColor, borderRadius: bRA8),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,10 +90,9 @@ class _UserAnnotationState extends State<UserAnnotation> {
                           children: [
                             i.isVerified!
                                 ? Container(
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                         color: Colors.white,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8))),
+                                        borderRadius: bRA8),
                                     padding: const EdgeInsets.all(8),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,

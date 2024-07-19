@@ -114,7 +114,14 @@ class _RoomsState extends State<Rooms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Rooms")),
+      appBar: AppBar(
+        title: const Text("Rooms"),
+        actions: [
+          IconButton(
+              onPressed: () => getRooms(),
+              icon: const Icon(Icons.refresh_rounded))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(32),
@@ -147,9 +154,18 @@ class _RoomsState extends State<Rooms> {
                       ),
                       title: Text(i.name ?? ""),
                       subtitle: Text(i.description ?? ""),
-                      trailing: TextButton(
-                          onPressed: () => navigateToRoomUser(i),
-                          child: const Icon(Icons.arrow_right_rounded)),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            i.targetTime.toString(),
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                          TextButton(
+                              onPressed: () => navigateToRoomUser(i),
+                              child: const Icon(Icons.arrow_right_rounded)),
+                        ],
+                      ),
                     ),
                   ))
             ],

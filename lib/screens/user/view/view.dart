@@ -44,7 +44,13 @@ class _RoomUsersState extends State<RoomUsers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("List of users")),
+      appBar: AppBar(
+        title: const Text("List of users"),
+        actions: [
+          IconButton(
+              onPressed: () => getRoomUsers(), icon: const Icon(Icons.refresh))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
