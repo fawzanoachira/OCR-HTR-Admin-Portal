@@ -15,6 +15,7 @@ class RoomUsers extends StatefulWidget {
 
 class _RoomUsersState extends State<RoomUsers> {
   List<User?> roomUsers = [];
+  double totalScore = 0;
 
   getRoomUsers() async {
     if (widget.room != null) {
@@ -24,6 +25,16 @@ class _RoomUsersState extends State<RoomUsers> {
       roomUsers.sort(
         (a, b) => b!.score!.compareTo(a!.score as num),
       );
+      totalScore = 0.0;
+      for (var element in roomUsers) {
+        if (element == null) {
+          continue;
+        }
+        if (element.score == null) {
+          continue;
+        }
+        totalScore = totalScore + element.score!;
+      }
     });
   }
 
@@ -47,27 +58,39 @@ class _RoomUsersState extends State<RoomUsers> {
       appBar: AppBar(
         title: const Text("List of users"),
         actions: [
+          Text('Completed: ${(totalScore * 10).floor().toString()}'),
+          const SizedBox(width: 8),
           IconButton(
-              onPressed: () => getRoomUsers(), icon: const Icon(Icons.refresh))
+              onPressed: () => getRoomUsers(), icon: const Icon(Icons.refresh)),
+          const SizedBox(width: 8)
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ...roomUsers.map((i) => Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: ListTile(
-                    onTap: () => navigateToAnnotation(i),
-                    leading: CircleAvatar(
-                      backgroundColor: circleAvatarBGColor,
-                      child: Text(i?.id.toString() ?? ""),
+        child: Column(children: [
+          ...roomUsers.map((i) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                onTap: () => navigateToAnnotation(i),
+                leading: CircleAvatar(
+                  backgroundColor: circleAvatarBGColor,
+                  child: Text(i?.id.toString() ?? ""),
+                ),
+                title: Text(i!.userName ?? ""),
+                subtitle: Text('Total Score: ${(i.score! * 10).floor()}'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text("Place: ", style: TextStyle(fontSize: 20)),
+                    Text(
+                      "${roomUsers.indexOf(i) + 1}",
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 252, 212, 95),
+                          fontSize: 25),
                     ),
-                    title: Text(i!.userName ?? ""),
-                    subtitle: Text(i.score.toString()),
-                  ),
-                ))
-          ],
-        ),
+                  ],
+                ),
+              )))
+        ]),
       ),
     );
   }

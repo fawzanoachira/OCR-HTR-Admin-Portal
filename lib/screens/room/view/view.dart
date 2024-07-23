@@ -158,8 +158,8 @@ class _RoomsState extends State<Rooms> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            i.targetTime.toString(),
-                            style: const TextStyle(fontSize: 15),
+                            'Target Time: ${i.targetTime.toString()} minutes',
+                            style: const TextStyle(fontSize: 16),
                           ),
                           TextButton(
                               onPressed: () => navigateToRoomUser(i),
