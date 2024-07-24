@@ -23,7 +23,7 @@ class _UserAnnotationState extends State<UserAnnotation> {
   getRoomUserAnnotation() async {
     controllers = [];
     annotations = [];
-    if (widget.room != null && widget.user != null) {
+    if (widget.room != null && widget.user != null && mounted) {
       annotations =
           await getRoomUserAnnotationAPI(widget.user!.id!, widget.room!.id!);
       for (var annotation in annotations) {

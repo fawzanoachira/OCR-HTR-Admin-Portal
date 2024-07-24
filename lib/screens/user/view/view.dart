@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ocr_admin/api/admin.dart';
-import 'package:ocr_admin/config/colors/colors.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/models/user.dart';
 import 'package:ocr_admin/screens/user_annotation/view/view.dart';
@@ -66,30 +65,45 @@ class _RoomUsersState extends State<RoomUsers> {
         ],
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Column(children: [
           ...roomUsers.map((i) => Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
-                onTap: () => navigateToAnnotation(i),
-                leading: CircleAvatar(
-                  backgroundColor: circleAvatarBGColor,
-                  child: Text(i?.id.toString() ?? ""),
-                ),
-                title: Text(i!.userName ?? ""),
-                subtitle: Text('Total Score: ${(i.score! * 10).floor()}'),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text("Place: ", style: TextStyle(fontSize: 20)),
-                    Text(
-                      "${roomUsers.indexOf(i) + 1}",
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 252, 212, 95),
-                          fontSize: 25),
-                    ),
-                  ],
-                ),
-              )))
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                  onTap: () => navigateToAnnotation(i),
+                  leading: roomUsers.indexOf(i) > 2
+                      ? Text("${roomUsers.indexOf(i) + 1}",
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 20))
+                      : roomUsers.indexOf(i) == 0
+                          ? const Icon(Icons.workspace_premium,
+                              color: Color(0xFFFFD700))
+                          : roomUsers.indexOf(i) == 1
+                              ? const Icon(Icons.workspace_premium,
+                                  color: Color(0xFFC0C0C0))
+                              : const Icon(Icons.workspace_premium,
+                                  color: Color(0xFFCD7F32)),
+                  title: Row(mainAxisSize: MainAxisSize.min, children: [
+                    Row(mainAxisSize: MainAxisSize.min, children: [
+                      if (i!.userName != "") ...[
+                        CircleAvatar(
+                            child: Text((i.userName ?? "OA")[0].toUpperCase()))
+                      ]
+                    ]),
+                    const SizedBox(width: 12),
+                    if (i.userName != "") ...[Text((i.userName.toString()))]
+                  ]),
+                  // subtitle: Text('Total Score: ${(i.score! * 10).floor()}'),
+                  trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                    // const Text("Place: ", style: TextStyle(fontSize: 20)),
+                    Text('${(i.score! * 10).floor()} XP',
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 181, 95, 252),
+                            fontSize: 16))
+                  ]))))
         ]),
       ),
     );
