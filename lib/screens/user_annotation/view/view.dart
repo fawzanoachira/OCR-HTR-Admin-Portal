@@ -20,6 +20,7 @@ class _UserAnnotationState extends State<UserAnnotation> {
   List<Annotations?> annotations = [];
   List<TextEditingController> controllers = [];
 
+  int totalVerifiedAnnotation = 0;
   getRoomUserAnnotation() async {
     controllers = [];
     annotations = [];
@@ -31,7 +32,23 @@ class _UserAnnotationState extends State<UserAnnotation> {
             .add(TextEditingController(text: annotation!.annotation ?? ""));
       }
     }
-    setState(() {});
+    setState(() {
+      totalVerifiedAnnotation = 0;
+      for (var element in annotations) {
+        if (element == null) {
+          continue;
+        }
+        if (element.isVerified == null) {
+          continue;
+        }
+        // if (element.isVerified == true && element.annotation == "") {
+        //   continue;
+        // }
+        if (element.isVerified == true) {
+          totalVerifiedAnnotation += 1;
+        }
+      }
+    });
   }
 
   verifyRoomUserAnnotation(Annotations ocrAnnotation) async {
@@ -56,6 +73,7 @@ class _UserAnnotationState extends State<UserAnnotation> {
       appBar: AppBar(
         title: const Text("Annotations"),
         actions: [
+          Text("Total Verified: $totalVerifiedAnnotation"),
           IconButton(
               onPressed: () => getRoomUserAnnotation(),
               icon: const Icon(Icons.refresh_rounded))
@@ -82,6 +100,7 @@ class _UserAnnotationState extends State<UserAnnotation> {
                             : const SizedBox(),
                         const SizedBox(height: 8),
                         TextFormField(
+                          style: const TextStyle(fontSize: 32),
                           controller: controllers[annotations.indexOf(i)],
                           decoration: const InputDecoration(
                               border: OutlineInputBorder()),
@@ -91,29 +110,49 @@ class _UserAnnotationState extends State<UserAnnotation> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             i.isVerified!
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: bRA8),
-                                    padding: const EdgeInsets.all(8),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          "Verified",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                  color:
-                                                      Colors.greenAccent[700]),
-                                        ),
-                                        const SizedBox(width: 4),
-                                        Icon(
-                                          Icons.check_circle_rounded,
-                                          color: Colors.green[700],
-                                        )
-                                      ],
+                                ? GestureDetector(
+                                    onTap: () {
+                                      verifyRoomUserAnnotation(i);
+                                      const snackdemo = SnackBar(
+                                        content: Text('Annotation Re-verified',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        backgroundColor:
+                                            Color.fromRGBO(56, 142, 60, 1),
+                                        elevation: 10,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        behavior: SnackBarBehavior.floating,
+                                        margin: EdgeInsets.all(5),
+                                      );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackdemo);
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: bRA8),
+                                      padding: const EdgeInsets.all(8),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            "Verified",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: Colors
+                                                        .greenAccent[700]),
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Icon(
+                                            Icons.check_circle_rounded,
+                                            color: Colors.green[700],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   )
                                 : ElevatedButton(
