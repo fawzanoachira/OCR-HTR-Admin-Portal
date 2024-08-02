@@ -41,9 +41,6 @@ class _UserAnnotationState extends State<UserAnnotation> {
         if (element.isVerified == null) {
           continue;
         }
-        // if (element.isVerified == true && element.annotation == "") {
-        //   continue;
-        // }
         if (element.isVerified == true) {
           totalVerifiedAnnotation += 1;
         }

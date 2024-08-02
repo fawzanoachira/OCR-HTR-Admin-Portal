@@ -54,16 +54,13 @@ class _RoomUsersState extends State<RoomUsers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("List of users"),
-        actions: [
-          Text('Completed: ${(totalScore * 10).floor().toString()}'),
-          const SizedBox(width: 8),
-          IconButton(
-              onPressed: () => getRoomUsers(), icon: const Icon(Icons.refresh)),
-          const SizedBox(width: 8)
-        ],
-      ),
+      appBar: AppBar(title: const Text("List of users"), actions: [
+        Text('Completed: ${(totalScore * 10).floor().toString()}'),
+        const SizedBox(width: 8),
+        IconButton(
+            onPressed: () => getRoomUsers(), icon: const Icon(Icons.refresh)),
+        const SizedBox(width: 8)
+      ]),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Column(children: [
@@ -96,9 +93,7 @@ class _RoomUsersState extends State<RoomUsers> {
                     const SizedBox(width: 12),
                     if (i.userName != "") ...[Text((i.userName.toString()))]
                   ]),
-                  // subtitle: Text('Total Score: ${(i.score! * 10).floor()}'),
                   trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                    // const Text("Place: ", style: TextStyle(fontSize: 20)),
                     Text('${(i.score! * 10).floor()} XP',
                         style: const TextStyle(
                             color: Color.fromARGB(255, 181, 95, 252),
