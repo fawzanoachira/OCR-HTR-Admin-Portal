@@ -7,9 +7,18 @@ import 'package:ocr_admin/models/annotations.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/models/user.dart';
 
+/// A widget that displays and manages user annotations.
 class UserAnnotation extends StatefulWidget {
+  /// Creates a [UserAnnotation] widget.
+  ///
+  /// The [room] parameter represents the room associated with the annotations.
+  /// The [user] parameter represents the user whose annotations are being displayed.
   const UserAnnotation({this.room, this.user, super.key});
+
+  /// The room associated with the annotations.
   final Room? room;
+
+  /// The user whose annotations are being displayed.
   final User? user;
 
   @override
@@ -17,11 +26,17 @@ class UserAnnotation extends StatefulWidget {
 }
 
 class _UserAnnotationState extends State<UserAnnotation> {
+  /// List of annotations for the user.
   List<Annotations?> annotations = [];
+
+  /// List of text controllers for editing annotations.
   List<TextEditingController> controllers = [];
 
+  /// Total number of verified annotations.
   int totalVerifiedAnnotation = 0;
-  getRoomUserAnnotation() async {
+
+  /// Fetches the room user annotations from the API.
+  Future<void> getRoomUserAnnotation() async {
     controllers = [];
     annotations = [];
     if (widget.room != null && widget.user != null && mounted) {
@@ -48,7 +63,10 @@ class _UserAnnotationState extends State<UserAnnotation> {
     });
   }
 
-  verifyRoomUserAnnotation(Annotations ocrAnnotation) async {
+  /// Verifies a room user annotation.
+  ///
+  /// Updates the annotation's verification status and text, then sends it to the API.
+  Future<void> verifyRoomUserAnnotation(Annotations ocrAnnotation) async {
     ocrAnnotation.isVerified = true;
     final int ocrIndex = annotations.indexOf(ocrAnnotation);
     ocrAnnotation.annotation = controllers[ocrIndex].text;

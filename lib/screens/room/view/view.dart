@@ -6,7 +6,9 @@ import 'package:ocr_admin/config/colors/colors.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/screens/user/view/view.dart';
 
+/// A widget that displays a list of rooms and allows creating new rooms.
 class Rooms extends StatefulWidget {
+  /// Creates a [Rooms] widget.
   const Rooms({super.key});
 
   @override
@@ -14,6 +16,7 @@ class Rooms extends StatefulWidget {
 }
 
 class _RoomsState extends State<Rooms> {
+  /// Creates a new room using the data from the text controllers.
   void _createRoom() async {
     final room = Room(
         name: nameController.text.toString(),
@@ -26,12 +29,16 @@ class _RoomsState extends State<Rooms> {
     setState(() {});
   }
 
+  /// Controller for the room name input.
   final TextEditingController nameController = TextEditingController();
 
+  /// Controller for the room description input.
   final TextEditingController descriptionController = TextEditingController();
 
+  /// Controller for the target time input.
   final TextEditingController targetTimeController = TextEditingController();
 
+  /// Shows a dialog to create a new room.
   void _show(BuildContext ctx) {
     showDialog(
       context: ctx,
@@ -40,7 +47,6 @@ class _RoomsState extends State<Rooms> {
           elevation: 8,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(8))),
-          // insetPadding: const EdgeInsets.all(210),
           child: Padding(
             padding: const EdgeInsets.all(32.0),
             child: Column(
@@ -86,12 +92,16 @@ class _RoomsState extends State<Rooms> {
     );
   }
 
+  /// List of rooms to display.
   List<Room> rooms = [];
+
+  /// Fetches the list of rooms from the API.
   getRooms() async {
     rooms = await getRoomsAPI();
     setState(() {});
   }
 
+  /// Navigates to the RoomUsers screen for the selected room.
   navigateToRoomUser(Room room) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => RoomUsers(room: room)));

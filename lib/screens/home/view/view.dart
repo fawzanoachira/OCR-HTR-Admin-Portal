@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ocr_admin/screens/home/widgets/dashboard_button.dart';
 
+/// A widget that displays the home screen of the admin dashboard.
+///
+/// This screen contains a dashboard button for navigating to the Room section.
 class HomeScreen extends StatelessWidget {
+  /// Creates a [HomeScreen] widget.
+  ///
+  /// The [key] parameter is optional and is used to control how one widget replaces
+  /// another widget in the tree.
   const HomeScreen({super.key});
 
   @override
@@ -14,6 +21,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Dashboard button for the Room section
                   DashboardButton(
                       theme: theme,
                       title: "Room",
