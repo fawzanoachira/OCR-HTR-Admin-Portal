@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ocr_admin/screens/home/widgets/dashboard_button.dart';
 
+///
+/// [HomeScreen]
+///
+/// [author] Muhammed Fawzan A
+/// [date]	July 10th, 2024
+/// [version]	v1.0.0
+/// [see]		StatefulWidget
+///
 /// A widget that displays the home screen of the admin dashboard.
 ///
 /// This screen contains a dashboard button for navigating to the Room section.

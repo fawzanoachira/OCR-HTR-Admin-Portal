@@ -4,6 +4,14 @@ import 'package:ocr_admin/config/measures/border_radius.dart';
 import 'package:ocr_admin/config/measures/padding.dart';
 import 'package:ocr_admin/screens/home/home.dart';
 
+///
+/// [MyApp]
+///
+/// [author] Muhammed Fawzan A
+/// [date]	July 10th, 2024
+/// [version]	v1.0.0
+/// [see]		StatefulWidget
+///
 /// The main application widget.
 class MyApp extends StatelessWidget {
   /// Creates a [MyApp] widget.

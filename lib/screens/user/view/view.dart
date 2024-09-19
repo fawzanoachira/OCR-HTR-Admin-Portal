@@ -4,6 +4,14 @@ import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/models/user.dart';
 import 'package:ocr_admin/screens/user_annotation/view/view.dart';
 
+///
+/// [RoomUsers]
+///
+/// [author] Muhammed Fawzan A
+/// [date]	July 10th, 2024
+/// [version]	v1.0.0
+/// [see]		StatefulWidget
+///
 /// A widget that displays a list of users in a room.
 class RoomUsers extends StatefulWidget {
   /// Creates a [RoomUsers] widget.

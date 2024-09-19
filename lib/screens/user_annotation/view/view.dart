@@ -7,6 +7,14 @@ import 'package:ocr_admin/models/annotations.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/models/user.dart';
 
+///
+/// [UserAnnotation]
+///
+/// [author] Muhammed Fawzan A
+/// [date]	July 10th, 2024
+/// [version]	v1.0.0
+/// [see]		StatefulWidget
+///
 /// A widget that displays and manages user annotations.
 class UserAnnotation extends StatefulWidget {
   /// Creates a [UserAnnotation] widget.

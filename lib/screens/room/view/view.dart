@@ -6,6 +6,14 @@ import 'package:ocr_admin/config/colors/colors.dart';
 import 'package:ocr_admin/models/room.dart';
 import 'package:ocr_admin/screens/user/view/view.dart';
 
+///
+/// [Rooms]
+///
+/// [author] Muhammed Fawzan A
+/// [date]	July 10th, 2024
+/// [version]	v1.0.0
+/// [see]		StatefulWidget
+///
 /// A widget that displays a list of rooms and allows creating new rooms.
 class Rooms extends StatefulWidget {
   /// Creates a [Rooms] widget.
